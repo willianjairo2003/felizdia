@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Cumpleaños, Mamá 💐</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      font-family: 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d6d;
+      transform: rotate(45deg);
+      animation: float 8s infinite;
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #ff4d6d;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(45deg); opacity: 0.7; }
+      100% { transform: translateY(-1000px) rotate(45deg); opacity: 0; }
+    }
+
+    .card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    padding: 40px 30px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8em;
+      color: #d6336c;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 30px;
+      background: #d6336c;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #a61e4d;
+    }
+
+    #mensaje {
+      margin-top: 30px;
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #333;
+      font-style: italic;
+      white-space: pre-wrap;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 2.2em;
+      }
+
+      p, #mensaje {
+        font-size: 1em;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 0.95em;
+      }
+
+      body {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Corazones flotantes -->
+  <script>
+    for (let i = 0; i < 40; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <!-- Contenedor principal -->
+  <div class="card">
+    <h1>¡Feliz Cumpleaños, Mamá! 🎂</h1>
+    <p>Haz clic abajo para leer algo especial...</p>
+    <button onclick="mostrarMensaje()">💌 Ver Mensaje</button>
+
+    <div id="mensaje"></div>
+  </div>
+
+  <!-- Máquina de escribir -->
+  <script>
+function mostrarMensaje() {
+  const boton = document.querySelector('button');
+  boton.disabled = true;  // Desactiva el botón para evitar más clics
+
+  const texto = 
+`Gracias por todo lo que eres,
+por tu amor incondicional,
+por tu fuerza, tu alegría,
+y por los abrazos que lo curan todo.
+
+Hoy es un dia muy especial y te quiero con todo mi corazón.
+¡Te amo muchísimo, Mamá! 🌷💖
+
+— De parte de tu hijo que te adora ❤️`;
+
+  const contenedor = document.getElementById("mensaje");
+  contenedor.innerHTML = "";  // limpio antes de escribir
+  let i = 0;
+
+  function escribir() {
+    if (i < texto.length) {
+      if (texto.charAt(i) === "\n") {
+        contenedor.appendChild(document.createElement("br"));
+      } else {
+        contenedor.appendChild(document.createTextNode(texto.charAt(i)));
+      }
+      i++;
+      setTimeout(escribir, 40);
+    }
+  }
+
+  escribir();
+}
+  </script>
+
+</body>
+</html>
